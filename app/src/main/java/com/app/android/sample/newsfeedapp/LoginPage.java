@@ -1,6 +1,9 @@
 package com.app.android.sample.newsfeedapp;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +20,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.android.sample.newsfeedapp.Util.Constants;
+import com.app.android.sample.newsfeedapp.Util.SessionManager;
+import com.app.android.sample.newsfeedapp.Util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +35,7 @@ public class LoginPage extends AppCompatActivity {
     private EditText userName,passWord;
     private Button login;
     ProgressDialog progressDialog;
+    private SessionManager session;
     private  String loginStatus,userLocation,username,userEmail,ID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +47,30 @@ public class LoginPage extends AppCompatActivity {
         login = findViewById(R.id.btn_login);
         progressDialog = new ProgressDialog(LoginPage.this);
         progressDialog.setMessage("Loading...");
-
+        session = new SessionManager();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isValid())
+                if(Util.isConnect(LoginPage.this))
                 {
-                    checkLogin();
+                    if(isValid())
+                    {
+                        checkLogin();
+                    }
                 }
+                else{
+                    new AlertDialog.Builder(LoginPage.this)
+                            .setTitle("No Internet Connection")
+                            .setMessage("please turn on the mobile data or Wifi")
+                            .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).show();
+                }
+
             }
         });
 
@@ -70,15 +91,20 @@ public class LoginPage extends AppCompatActivity {
                         try {
                             progressDialog.dismiss();
                             JSONArray jary = new JSONArray(response);
-                            JSONObject jobj = jary.getJSONObject(1);
+                            JSONObject jobj = jary.getJSONObject(0);
                             loginStatus = jobj.getString("Status");
                             userLocation = jobj.getString("location");
                             userEmail = jobj.getString("User_id");
                             username = jobj.getString("user_name");
                             ID = jobj.getString("id");
-                            if(loginStatus.equalsIgnoreCase(""))
+                            if(loginStatus.equalsIgnoreCase("Success"))
                             {
                                 Toast.makeText(LoginPage.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                                session.setPreferences(LoginPage.this,Constants.LOCATION,""+userLocation);
+                                session.setPreferences(LoginPage.this,Constants.USERNAME,""+username);
+                                Intent in = new Intent(LoginPage.this,NewsFeedActivity.class);
+                                startActivity(in);
+                                finish();
                             }
                             else
                             {

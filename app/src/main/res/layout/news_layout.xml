@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:padding="5dp"
+    android:elevation="5dp"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="fitXY"
+        android:id="@+id/img_view"/>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:weightSum="3"
+       android:padding="5dp"
+       android:gravity="center"
+       android:orientation="horizontal">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="2.9"
+           android:gravity="right"
+           android:id="@+id/loc_view"
+           android:textStyle="bold"
+           android:textColor="#484848"
+           android:text="location"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="0.1"
+           android:background="@drawable/loc_icon"
+           />
+
+   </LinearLayout>
+
+</LinearLayout>
