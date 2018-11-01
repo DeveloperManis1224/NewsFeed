@@ -67,8 +67,6 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
 //            Glide.with(holder.postImage.getContext()).load(R.drawable.pdf_icon).into(holder.postImage);
 //        }
 
-
-
     }
     @Override
     public int getItemCount() {
