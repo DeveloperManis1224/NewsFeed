@@ -1,6 +1,7 @@
 package com.app.android.sample.newsfeedapp;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,31 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
     @Override
     public void onBindViewHolder(DataAdapter.MyViewHolder holder, int position) {
         holder.locationName.setText(objs_arr.get(position).get_locationName ());
-
         Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
+        Log.d("asasasasasas", "onBindViewHolder: "+objs_arr.get(position).get_imageName());
+//        String[] separated =objs_arr.get(position).get_imageName().split(".");
+//        String sss = separated[0];
+//        String fileFormat = separated[1];
+      //  Log.d("asasasasasas", "onBindViewHolder: "+sss +"   " + fileFormat);
+//        if (fileFormat.equalsIgnoreCase("pdf"))
+//        {
+//            Glide.with(holder.postImage.getContext()).load(R.drawable.pdf_icon).into(holder.postImage);
+//        }
+//        String[] separated =objs_arr.get(position).get_imageName().split(".");
+//        String fileFormat = separated[1];
+
+//        if(objs_arr.get(position).get_imageName().split(".").toString().contains("jpg") ||
+//                objs_arr.get(position).get_imageName().split(".").toString().contains("png"))
+//        {
+//            Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
+//        }
+//        else if (objs_arr.get(position).get_imageName().split(".").toString().contains("pdf"))
+//        {
+//            Glide.with(holder.postImage.getContext()).load(R.drawable.pdf_icon).into(holder.postImage);
+//        }
+
+
+
     }
     @Override
     public int getItemCount() {

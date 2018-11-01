@@ -2,7 +2,6 @@ package com.app.android.sample.newsfeedapp;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,15 +18,11 @@ import com.android.volley.toolbox.Volley;
 import com.app.android.sample.newsfeedapp.Util.Constants;
 import com.app.android.sample.newsfeedapp.Util.SessionManager;
 import com.app.android.sample.newsfeedapp.Util.Util;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public class NewsFeedActivity extends AppCompatActivity {
 
     private SessionManager session;
@@ -67,7 +59,7 @@ public class NewsFeedActivity extends AppCompatActivity {
 
         if(Util.isConnect(NewsFeedActivity.this))
         {
-            getPostdetails();
+            getPostdetails(session.getPreferences(NewsFeedActivity.this, Constants.LOCATION));
         }
         else
         {
@@ -84,14 +76,14 @@ dialog.dismiss();
 
     }
 
-    private void getPostdetails()
+    private void getPostdetails(String place)
     {
         progressDialog.show();
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constants.BASE_URL+"get_post.php";
+        String url = Constants.BASE_URL+"get_post.php?location="+place;
         Log.v("asasasasas",url);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -99,7 +91,7 @@ dialog.dismiss();
                         progressDialog.dismiss();
                         JSONArray jary = null;
                         try {
-                            //jary =
+                            jary = new JSONArray(response);
                             for(int i = 0; i<jary.length(); i++)
                             {
                                 JSONObject jobj = jary.getJSONObject(i);
@@ -124,15 +116,7 @@ dialog.dismiss();
                 progressDialog.dismiss();
 
             }
-        })
-        {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params =  new HashMap<String, String>();
-                params.put("location",""+locationName);
-                return params;
-            }
-        };
+        });
         queue.add(stringRequest);
     }
 }
