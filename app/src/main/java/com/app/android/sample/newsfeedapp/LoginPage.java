@@ -102,6 +102,7 @@ public class LoginPage extends AppCompatActivity {
                                 Toast.makeText(LoginPage.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                                 session.setPreferences(LoginPage.this,Constants.LOCATION,""+userLocation);
                                 session.setPreferences(LoginPage.this,Constants.USERNAME,""+username);
+                                session.setPreferences(LoginPage.this,Constants.SESSION,"1");
                                 Intent in = new Intent(LoginPage.this,NewsFeedActivity.class);
                                 startActivity(in);
                                 finish();
