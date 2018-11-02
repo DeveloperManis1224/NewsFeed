@@ -1,5 +1,7 @@
 package com.app.android.sample.newsfeedapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,22 +24,22 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
         this.objs_arr = objs;
     }
 
+    String imgName ;
+
     @Override
     public DataAdapter.MyViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final View buysell_view=LayoutInflater.from(parent.getContext()).inflate(R.layout.news_layout,parent,false);
         buysell_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                int buy_position = Rental_Buysell.buysell_list.getChildAdapterPosition(view);
-//                Intent in = new Intent(view.getContext(), Preview_Property.class);
-//                in.putExtra("value", objs_arr.get(buy_position).getID() + "#buysell");
-//                // Toast.makeText (view.getContext (), ""+objs_arr.get (buy_position).getID (), Toast.LENGTH_SHORT).show ();
-//                view.getContext().startActivity(in);
-
+                int pos = NewsFeedActivity.lstView.getChildAdapterPosition(view);
+                String img = objs_arr.get(pos).get_imageName();
+                if(img.contains(".pdf"))
+                {
+                   view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.BASE_IMG_URL+objs_arr.get(pos).get_imageName())));
+                }
             }
         });
-
         return new DataAdapter.MyViewHolder (buysell_view);
     }
 
@@ -46,27 +48,17 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
         holder.locationName.setText(objs_arr.get(position).get_locationName ());
         Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
         Log.d("asasasasasas", "onBindViewHolder: "+objs_arr.get(position).get_imageName());
-//        String[] separated =objs_arr.get(position).get_imageName().split(".");
-//        String sss = separated[0];
-//        String fileFormat = separated[1];
-      //  Log.d("asasasasasas", "onBindViewHolder: "+sss +"   " + fileFormat);
-//        if (fileFormat.equalsIgnoreCase("pdf"))
-//        {
-//            Glide.with(holder.postImage.getContext()).load(R.drawable.pdf_icon).into(holder.postImage);
-//        }
-//        String[] separated =objs_arr.get(position).get_imageName().split(".");
-//        String fileFormat = separated[1];
-
-//        if(objs_arr.get(position).get_imageName().split(".").toString().contains("jpg") ||
-//                objs_arr.get(position).get_imageName().split(".").toString().contains("png"))
-//        {
-//            Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
-//        }
-//        else if (objs_arr.get(position).get_imageName().split(".").toString().contains("pdf"))
-//        {
-//            Glide.with(holder.postImage.getContext()).load(R.drawable.pdf_icon).into(holder.postImage);
-//        }
-
+         imgName = objs_arr.get(position).get_imageName();
+       if(imgName.contains(".jpg"))
+       {
+           Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
+           Log.d("asasasasasas", "JPG : "+objs_arr.get(position).get_imageName() );
+       }
+       else if(imgName.contains(".pdf"))
+       {
+           Glide.with(holder.postImage.getContext()).load(R.drawable.pdf_icon).into(holder.postImage);
+           Log.d("asasasasasas", "PDF : "+objs_arr.get(position).get_imageName() );
+       }
     }
     @Override
     public int getItemCount() {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/share"
+            android:icon="@drawable/ic_share_black_24dp"
+            android:title="Share with your Friends" />
+
+        <item android:id="@+id/feedback"
+            android:icon="@drawable/ic_feedback_black_24dp"
+            android:title="Rating and feedback" />
+
+        <item android:id="@+id/contactus"
+            android:icon="@drawable/ic_contact_phone_black_24dp"
+            android:title="Contact Us" />
+    </group>
+</menu>

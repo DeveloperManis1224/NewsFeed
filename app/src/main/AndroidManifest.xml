@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewsFeedActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="CUPW"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".LoginPage"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
