@@ -10,14 +10,11 @@
 
 
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        android:textSize="35dp"
-        android:gravity="center"
-        android:text="CUPW"/>
+        android:layout_height="220dp"
+        android:src="@drawable/logo_cupw"
+        android:gravity="center" />
 
     <ProgressBar
         android:id="@+id/progressBar"

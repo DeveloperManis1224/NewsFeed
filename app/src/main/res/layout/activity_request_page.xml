@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    tools:context=".RequestPage">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please enter your registered email address \n (we will send your password in your registered mail address)"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:textColor="#5b5b5b"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edt_bg"
+        android:padding="10dp"
+        android:inputType="phone"
+        android:id="@+id/edt_re_email"
+        android:elevation="2dp"
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp"
+        android:hint="Enter Email"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="#fffefe"
+        android:id="@+id/btn_login"
+        android:textStyle="bold"
+        android:onClick="onRequestMail"
+        android:elevation="2dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_drawable"
+        android:hint="Get Password"/>
+
+</LinearLayout>

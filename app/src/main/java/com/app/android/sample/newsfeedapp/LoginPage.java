@@ -70,11 +70,8 @@ public class LoginPage extends AppCompatActivity {
                                 }
                             }).show();
                 }
-
             }
         });
-
-
     }
     private void checkLogin()
     {
@@ -102,7 +99,8 @@ public class LoginPage extends AppCompatActivity {
                                 Toast.makeText(LoginPage.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                                 session.setPreferences(LoginPage.this,Constants.LOCATION,""+userLocation);
                                 session.setPreferences(LoginPage.this,Constants.USERNAME,""+username);
-                                session.setPreferences(LoginPage.this,Constants.SESSION,"1");
+                                session.setPreferences(LoginPage.this,Constants.SESSION,Constants.LOGIN);
+                                session.setPreferences(LoginPage.this,Constants.MAIL,""+userEmail);
                                 Intent in = new Intent(LoginPage.this,NewsFeedActivity.class);
                                 startActivity(in);
                                 finish();
@@ -152,5 +150,17 @@ public class LoginPage extends AppCompatActivity {
             passWord.setError("Invalid");
         }
         return val;
+    }
+    @Override
+    public void onBackPressed() {
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+    }
+
+    public void onRequest(View view) {
+
+
     }
 }

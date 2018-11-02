@@ -6,5 +6,8 @@ public class Constants {
     public static  final  String LOCATION = "location";
     public static  final  String USERNAME = "user";
     public static  final  String SESSION = "session";
+    public static  final  String LOGIN = "1";
+    public static  final  String LOGOUT = "0";
+    public static  final  String MAIL = "mail";
 
 }

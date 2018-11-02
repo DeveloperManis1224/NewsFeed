@@ -86,14 +86,22 @@ dialog.dismiss();
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/")));
                                 break;
                             case R.id.contactus:
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/")));
+                                Intent i = new Intent(NewsFeedActivity.this,ContactUs.class);
+                                startActivity(i);
+                                finish();
                                 break;
-                            case R.id.share:
-                                Intent sendIntent = new Intent();
-                                sendIntent.setAction(Intent.ACTION_SEND);
-                                sendIntent.putExtra(Intent.EXTRA_TEXT, "App link: http://play.google.com");
-                                sendIntent.setType("text/plain");
-                                startActivity(sendIntent);
+                            case R.id.profile:
+                                Intent intent = new Intent(NewsFeedActivity.this,ProfileActivity.class);
+                                startActivity(intent);
+                                finish();
+                                break;
+                            case R.id.about_cupw:
+                                break;
+                            case R.id.lgot:
+                               session.setPreferences(NewsFeedActivity.this,Constants.SESSION,Constants.LOGOUT);
+                               Intent in = new Intent(NewsFeedActivity.this,SplashScreen.class);
+                               startActivity(in);
+                               finish();
                                 break;
                         }
                         menuItem.setChecked(true);
@@ -139,7 +147,6 @@ dialog.dismiss();
                                 String image = jobj.getString("image");
                                 name.add(new DataModel (location,image,id));
                             }
-
                             DataAdapter dad = new DataAdapter(name);
                             lstView.setAdapter(dad);
                         } catch (JSONException e) {
