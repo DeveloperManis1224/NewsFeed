@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,6 +21,9 @@ import com.app.android.sample.newsfeedapp.Util.Constants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ContactUs extends AppCompatActivity {
     private EditText name,phone,email;
@@ -67,13 +72,29 @@ public class ContactUs extends AppCompatActivity {
     {
             progressDialog.show();
             RequestQueue queue = Volley.newRequestQueue(this);
-            String url = Constants.BASE_URL+"get_post.php?location=";
+            String url = Constants.BASE_URL+"contact_us.php";
             Log.v("asasasasas",url);
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Log.v("asasasasas121212",response);
+                            try {
+                                JSONObject jobj = new JSONObject(response);
+
+                                String sts = jobj.getString("status");
+                                if(sts.equalsIgnoreCase("success"))
+                                {
+                                    Toast.makeText(ContactUs.this, "Thank you...we will ctact you soon.", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    Toast.makeText(ContactUs.this, "Failed...", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Toast.makeText(ContactUs.this, "", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     }, new Response.ErrorListener() {
@@ -82,7 +103,17 @@ public class ContactUs extends AppCompatActivity {
                     Log.v("asasasasas",error.getMessage());
                     progressDialog.dismiss();
                 }
-            });
+            })
+            {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> params =  new HashMap<String, String>();
+                    params.put("name",""+name.getText().toString().trim());
+                    params.put("phone",""+phone.getText().toString().trim());
+                    params.put("email",""+email.getText().toString().trim());
+                    return params;
+                }
+            };
             queue.add(stringRequest);
     }
     @Override

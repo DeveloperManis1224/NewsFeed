@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -14,6 +15,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.android.sample.newsfeedapp.Util.Constants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RequestPage extends AppCompatActivity {
     private EditText txtEmail;
@@ -30,16 +34,15 @@ public class RequestPage extends AppCompatActivity {
         if(!txtEmail.getText().toString().isEmpty())
         {
             onSubmit();
-
         }
     }
     private  void onSubmit()
     {
         progressDialog.show();
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constants.BASE_URL+"get_post.php?location=";
+        String url = Constants.BASE_URL+"request_password.php";
         Log.v("asasasasas",url);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -52,7 +55,15 @@ public class RequestPage extends AppCompatActivity {
                 Log.v("asasasasas",error.getMessage());
                 progressDialog.dismiss();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params =  new HashMap<String, String>();
+                params.put("name",""+txtEmail.getText().toString().trim());
+
+                return params;
+            }
+        };
         queue.add(stringRequest);
     }
 }

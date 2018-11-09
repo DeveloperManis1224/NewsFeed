@@ -12,17 +12,39 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Request Password"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"
+        android:textAlignment="center"
+        android:textColor="#080808"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Please enter your registered email address \n (we will send your password in your registered mail address)"
         android:textSize="12sp"
         android:textAlignment="center"
         android:textColor="#5b5b5b"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edt_bg"
+        android:padding="10dp"
+        android:inputType="textPersonName"
+        android:id="@+id/edt_re_name"
+        android:elevation="2dp"
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp"
+        android:hint="Enter Username"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edt_bg"
         android:padding="10dp"
-        android:inputType="phone"
+        android:inputType="textEmailAddress"
         android:id="@+id/edt_re_email"
         android:elevation="2dp"
         android:textSize="15dp"
@@ -33,7 +55,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="#fffefe"
+        android:textColor="#fff"
         android:id="@+id/btn_login"
         android:textStyle="bold"
         android:onClick="onRequestMail"

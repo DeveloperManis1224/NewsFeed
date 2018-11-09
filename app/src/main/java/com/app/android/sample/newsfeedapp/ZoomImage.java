@@ -1,6 +1,5 @@
 package com.app.android.sample.newsfeedapp;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -17,10 +16,9 @@ public class ZoomImage extends AppCompatActivity {
         setContentView(R.layout.activity_zoom_image);
         imgView = findViewById(R.id.img_zoom);
 
-        String imgName = getIntent().getStringExtra("img");
+        String imgName = getIntent().getStringExtra(Constants.IMAGE);
 
         Glide.with(this).load(Constants.BASE_IMG_URL+imgName).into(imgView);
-
     }
 
     @Override

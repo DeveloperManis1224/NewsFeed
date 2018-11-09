@@ -40,7 +40,7 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
                 else if(img.contains(".jpg"))
                 {
                     Intent intent = new Intent(view.getContext(),ZoomImage.class);
-                    intent.putExtra("img",img);
+                    intent.putExtra(Constants.IMAGE,img);
                     view.getContext().startActivity(intent);
                 }
             }
