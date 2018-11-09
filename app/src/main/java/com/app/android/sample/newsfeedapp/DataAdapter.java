@@ -37,7 +37,7 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
                 {
                    view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.BASE_IMG_URL+objs_arr.get(pos).get_imageName())));
                 }
-                else if(img.contains(".jpg"))
+                else if(img.contains(".JPG")||img.contains(".jpg")||img.contains(".png")||img.contains(".PNG"))
                 {
                     Intent intent = new Intent(view.getContext(),ZoomImage.class);
                     intent.putExtra(Constants.IMAGE,img);
@@ -59,7 +59,7 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
 
          if(word.equalsIgnoreCase("null"))
          {
-             if(imgName.contains(".jpg"))
+             if(imgName.contains(".JPG")||imgName.contains(".jpg")||imgName.contains(".png")||imgName.contains(".PNG"))
              {
                  Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
                  Log.d("asasasasasas", "JPG : "+objs_arr.get(position).get_imageName() );

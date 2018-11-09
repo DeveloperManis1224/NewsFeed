@@ -5,7 +5,7 @@
     android:background="@drawable/lyt_radius"
     android:padding="5dp"
     android:elevation="5dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
@@ -19,11 +19,11 @@
         android:scaleType="fitXY"
         android:id="@+id/img_view"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2.9"
         android:textSize="16sp"
-        android:padding="10dp"
+        android:padding="5dp"
         android:id="@+id/work_view"
         android:textStyle="bold"
         android:textColor="#484848"
@@ -32,7 +32,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:weightSum="3"
-       android:padding="5dp"
+       android:padding="1dp"
        android:gravity="center"
        android:orientation="horizontal">
        <TextView

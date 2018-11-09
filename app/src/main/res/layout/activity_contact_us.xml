@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edt_bg"
             android:padding="10dp"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:id="@+id/edt_name"
             android:elevation="2dp"
             android:textSize="15dp"

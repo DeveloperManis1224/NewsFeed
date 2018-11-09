@@ -81,11 +81,13 @@ public class ContactUs extends AppCompatActivity {
                             Log.v("asasasasas121212",response);
                             try {
                                 JSONObject jobj = new JSONObject(response);
-
                                 String sts = jobj.getString("status");
                                 if(sts.equalsIgnoreCase("success"))
                                 {
-                                    Toast.makeText(ContactUs.this, "Thank you...we will ctact you soon.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ContactUs.this, "Thank you...we will contact you soon.", Toast.LENGTH_SHORT).show();
+                                    Intent in = new Intent(ContactUs.this,NewsFeedActivity.class);
+                                    startActivity(in);
+                                    finish();
                                 }
                                 else
                                 {
@@ -94,7 +96,7 @@ public class ContactUs extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            Toast.makeText(ContactUs.this, "", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(ContactUs.this, "", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     }, new Response.ErrorListener() {
@@ -110,7 +112,7 @@ public class ContactUs extends AppCompatActivity {
                     Map<String,String> params =  new HashMap<String, String>();
                     params.put("name",""+name.getText().toString().trim());
                     params.put("phone",""+phone.getText().toString().trim());
-                    params.put("email",""+email.getText().toString().trim());
+                    params.put("mail",""+email.getText().toString().trim());
                     return params;
                 }
             };
