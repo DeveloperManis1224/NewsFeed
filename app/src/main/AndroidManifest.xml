@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_cupw"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -34,8 +34,10 @@
             android:name=".ContactUs"
             android:label="Contact Us"
             android:theme="@style/AppTheme" />
-        <activity android:name=".RequestPage"
-            android:label="Request Password"/>
+        <activity
+            android:name=".RequestPage"
+            android:label="Request Password" />
+        <activity android:name=".ZoomImage"></activity>
     </application>
 
 </manifest>

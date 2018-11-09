@@ -145,7 +145,9 @@ dialog.dismiss();
                                 String location = jobj.getString("location");
                                 String id = jobj.getString("id");
                                 String image = jobj.getString("image");
-                                name.add(new DataModel (location,image,id));
+                                String date = jobj.getString("date");
+                                String word = jobj.getString("word");
+                                name.add(new DataModel (location,image,id,date,word));
                             }
                             DataAdapter dad = new DataAdapter(name);
                             lstView.setAdapter(dad);

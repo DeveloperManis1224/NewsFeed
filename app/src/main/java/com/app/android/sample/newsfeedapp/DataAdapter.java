@@ -23,7 +23,6 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
     public DataAdapter(ArrayList<DataModel> objs) {
         this.objs_arr = objs;
     }
-
     String imgName ;
 
     @Override
@@ -38,6 +37,12 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
                 {
                    view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.BASE_IMG_URL+objs_arr.get(pos).get_imageName())));
                 }
+                else if(img.contains(".jpg"))
+                {
+                    Intent intent = new Intent(view.getContext(),ZoomImage.class);
+                    intent.putExtra("img",img);
+                    view.getContext().startActivity(intent);
+                }
             }
         });
         return new DataAdapter.MyViewHolder (buysell_view);
@@ -45,20 +50,33 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
 
     @Override
     public void onBindViewHolder(DataAdapter.MyViewHolder holder, int position) {
-        holder.locationName.setText(objs_arr.get(position).get_locationName ());
+        holder.locationName.setText(objs_arr.get(position).get_date()+", "+objs_arr.get(position).get_locationName ());
         Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
         Log.d("asasasasasas", "onBindViewHolder: "+objs_arr.get(position).get_imageName());
          imgName = objs_arr.get(position).get_imageName();
-       if(imgName.contains(".jpg"))
-       {
-           Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
-           Log.d("asasasasasas", "JPG : "+objs_arr.get(position).get_imageName() );
-       }
-       else if(imgName.contains(".pdf"))
-       {
-           Glide.with(holder.postImage.getContext()).load(R.drawable.pdf_icon).into(holder.postImage);
-           Log.d("asasasasasas", "PDF : "+objs_arr.get(position).get_imageName() );
-       }
+
+         String word = objs_arr.get(position).get_word();
+
+         if(word.equalsIgnoreCase("null"))
+         {
+             if(imgName.contains(".jpg"))
+             {
+                 Glide.with(holder.postImage.getContext()).load(Constants.BASE_IMG_URL+objs_arr.get(position).get_imageName()).into(holder.postImage);
+                 Log.d("asasasasasas", "JPG : "+objs_arr.get(position).get_imageName() );
+             }
+             else if(imgName.contains(".pdf"))
+             {
+                 Glide.with(holder.postImage.getContext()).load(R.drawable.pdf_icon).into(holder.postImage);
+                 Log.d("asasasasasas", "PDF : "+objs_arr.get(position).get_imageName() );
+             }
+             holder.wordText.setVisibility(View.GONE);
+         }
+         else
+         {
+             holder.postImage.setVisibility(View.GONE);
+             holder.wordText.setText(word);
+         }
+
     }
     @Override
     public int getItemCount() {
@@ -68,12 +86,13 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
 
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
-        TextView locationName;
+        TextView locationName,wordText;
         ImageView postImage;
         public MyViewHolder(View itemView) {
             super(itemView);
             locationName = itemView.findViewById(R.id.loc_view);
             postImage = itemView.findViewById(R.id.img_view);
+            wordText = itemView.findViewById(R.id.work_view);
         }
     }
 

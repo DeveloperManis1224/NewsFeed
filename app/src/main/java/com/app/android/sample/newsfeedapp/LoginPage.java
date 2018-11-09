@@ -111,7 +111,8 @@ public class LoginPage extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.v("asasasasas",e.getMessage());
+                            Log.v("asasasasas",""+e.getMessage());
+                            Toast.makeText(LoginPage.this,"Login Failed...",Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
 
@@ -119,7 +120,8 @@ public class LoginPage extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.v("asasasasas",error.getMessage());
+                Log.v("asasasasas",""+error.getMessage());
+                Toast.makeText(LoginPage.this,"Login Failed...",Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
 
             }
@@ -160,7 +162,8 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void onRequest(View view) {
-
-
+        Intent in = new Intent (LoginPage.this,RequestPage.class);
+        startActivity(in);
+        finish();
     }
 }

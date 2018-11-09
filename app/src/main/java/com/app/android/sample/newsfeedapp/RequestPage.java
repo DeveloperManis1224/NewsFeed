@@ -26,7 +26,6 @@ public class RequestPage extends AppCompatActivity {
         progressDialog = new ProgressDialog(RequestPage.this);
         progressDialog.setMessage("Loading...");
     }
-
     public void onRequestMail(View view) {
         if(!txtEmail.getText().toString().isEmpty())
         {

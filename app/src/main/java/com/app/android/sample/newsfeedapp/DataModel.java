@@ -1,12 +1,31 @@
 package com.app.android.sample.newsfeedapp;
 
 public class DataModel {
-    String _locationName,_imageName,_postId;
 
-    public DataModel(String _locationName, String _imageName, String _postId) {
+    String _locationName,_imageName,_postId,_date,_word;
+
+    public String get_date() {
+        return _date;
+    }
+
+    public void set_date(String _date) {
+        this._date = _date;
+    }
+
+    public String get_word() {
+        return _word;
+    }
+
+    public void set_word(String _word) {
+        this._word = _word;
+    }
+
+    public DataModel(String _locationName, String _imageName, String _postId, String _date, String _word) {
         this._locationName = _locationName;
         this._imageName = _imageName;
         this._postId = _postId;
+        this._date = _date;
+        this._word = _word;
     }
 
     public String get_locationName() {

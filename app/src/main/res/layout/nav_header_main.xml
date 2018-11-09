@@ -12,13 +12,15 @@
 android:padding="10dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <TextView
+    <ImageView
         android:id="@+id/nav_header_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:text="CUPW"
+        android:text=""
+        android:padding="15dp"
+        android:src="@drawable/logo_cupw"
         android:textColor="@color/colorPrimary"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 </LinearLayout>
