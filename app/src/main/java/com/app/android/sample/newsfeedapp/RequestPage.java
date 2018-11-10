@@ -45,9 +45,9 @@ public class RequestPage extends AppCompatActivity {
     {
         progressDialog.show();
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constants.BASE_URL+"request_password.php";
+        String url = Constants.BASE_IMG_URL+"pwd.php?email="+txtEmail.getText().toString().trim();
         Log.v("asasasasas",url);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

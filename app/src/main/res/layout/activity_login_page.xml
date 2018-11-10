@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     android:gravity="center"
-    android:background="#ecfdfa"
+
     tools:context=".LoginPage">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/logo_cupw"
+            android:gravity="center" />
 
         <TextView
             android:layout_width="match_parent"
